@@ -8,8 +8,6 @@
 #include "graphedge.h"
 #include "chatbot.h"
 
-//This is a GitHub Test
-
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
