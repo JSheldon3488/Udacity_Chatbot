@@ -11,7 +11,7 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
+    //delete _chatBot; (This is a bug. No call to new, should not have a call to delete)
 
     ////
     //// EOF STUDENT CODE
