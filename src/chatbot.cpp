@@ -44,36 +44,31 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
-//Exclusive Ownership on Copy Constructor
-ChatBot::ChatBot(ChatBot &source) {
+//Deep Copy Constructor
+ChatBot::ChatBot(const ChatBot &source) {
     std::cout << "ChatBot Copy Constructor: Copying content of instance " << &source << " to instance " << this << std::endl;
     //Copy over all data handles
     _chatLogic = source._chatLogic;
     _rootNode = source._rootNode;
-    _image = source._image;
     _currentNode = source._currentNode;
-    //Remove all source Handles
-    source._chatLogic = nullptr;
-    source._rootNode = nullptr;
-    source._currentNode = nullptr;
-    source._image = NULL;
+    _image = new wxBitmap();
+    *_image = *source._image;
 }
-//Exclusive Ownership on Copy Assignment
-ChatBot& ChatBot::operator= (ChatBot &source) {
+//Deep Copy Assignment
+ChatBot& ChatBot::operator= (const ChatBot &source) {
     std::cout << "ChatBot Assignment Operator: Assigning content of instance " << &source << " to instance " << this << std::endl;
     if (this == &source) {
         return *this;
+    }
+    if(_image != NULL) {
+        delete _image;
     }
     //Copy over all data handles
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
     _currentNode = source._currentNode;
-    _image = source._image;
-    //Remove all source handles
-    source._rootNode = nullptr;
-    source._chatLogic = nullptr;
-    source._currentNode = nullptr;
-    source._image = NULL;
+    _image = new wxBitmap();
+    *_image = *source._image;
     return *this;
 }
 
@@ -87,7 +82,7 @@ ChatBot::ChatBot(ChatBot &&source) {
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
     source._currentNode = nullptr;
-    source._image = nullptr;
+    source._image = NULL;
 }
 
 ChatBot& ChatBot::operator= (ChatBot &&source) {
@@ -97,7 +92,6 @@ ChatBot& ChatBot::operator= (ChatBot &&source) {
     }
     if (_image != NULL) {
         delete _image;
-        _image = NULL;
     }
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
@@ -106,7 +100,7 @@ ChatBot& ChatBot::operator= (ChatBot &&source) {
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
     source._currentNode = nullptr;
-    source._image = nullptr;
+    source._image = NULL;
 }
 ////
 //// EOF STUDENT CODE
