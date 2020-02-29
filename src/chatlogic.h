@@ -19,7 +19,7 @@ private:
 
     // data handles (owned)
     std::vector<std::unique_ptr<GraphNode>> _nodes;
-    std::vector<GraphEdge *> _edges;
+    //std::vector<GraphEdge *> _edges; No longer needed when using unique_ptr as part of Nodes. Edges will get deleted automatically.
 
     ////
     //// EOF STUDENT CODE
