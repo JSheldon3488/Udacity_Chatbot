@@ -77,9 +77,8 @@ ChatBot::ChatBot(ChatBot &&source) {
     //Move all handles and null out old ones
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
-    _currentNode = source._currentNode;
+    _chatLogic->SetChatbotHandle(this);
     _image = source._image;
-    source._rootNode = nullptr;
     source._chatLogic = nullptr;
     source._currentNode = nullptr;
     source._image = NULL;
@@ -95,12 +94,12 @@ ChatBot& ChatBot::operator= (ChatBot &&source) {
     }
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
-    _currentNode = source._currentNode;
+    _chatLogic->SetChatbotHandle(this);
     _image = source._image;
-    source._rootNode = nullptr;
     source._chatLogic = nullptr;
     source._currentNode = nullptr;
     source._image = NULL;
+    return *this;
 }
 ////
 //// EOF STUDENT CODE
